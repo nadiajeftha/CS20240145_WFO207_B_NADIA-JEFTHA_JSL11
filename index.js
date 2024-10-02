@@ -24,9 +24,9 @@ function initializeData() {
 }
 
 // TASK: Get elements from the DOM
-const elements = {
+const elements = 
+document.querySelectorAll('*')
 
-}
 
 let activeBoard = ""
 
