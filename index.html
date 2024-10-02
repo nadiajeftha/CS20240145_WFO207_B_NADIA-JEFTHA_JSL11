@@ -28,7 +28,7 @@
             <div class="toggle-div">
                 <img src="./assets/icon-dark-theme.svg" id="icon-dark" alt="icon-dark-theme">
                 <input type="checkbox" id="switch" />
-                <label for="switch" id="label-checkbox-theme"></label>
+                <label for="switch" id="label-checkbox-theme">SWITCH</label>
                 <img src="./assets/icon-light-theme.svg" id="icon-light" alt="icon-light-theme">
             </div>
             <div class="hide-side-bar-div">
@@ -51,12 +51,12 @@
                     <img src="./assets/icon-chevron-down.svg" alt="icon-chevron-down" class="icon-chevron-down" id="dropDownIcon">
                 </button>
             </div>
-            <button id="add-new-task-btn" class="primary-btn">+ Add New Task</button>
-            <button class="edit-btn" id="edit-board-btn">
+            <button type="button" id="add-new-task-btn" class="primary-btn">+ Add New Task</button>
+            <button type="button" class="edit-btn" id="edit-board-btn">
                 <p id="three-dots-icon">&#8942;</p>
             </button>
             <div id="editBoardDiv" class="editBtnsDiv">
-                <button class="editBtns" id="deleteBoardBtn">Delete Board</button>
+                <button type="button" class="editBtns" id="deleteBoardBtn">Delete Board</button>
             </div>
         </header>
 
@@ -123,7 +123,7 @@
         <form id="edit-task-form">
             <div class="edit-task-div" id="edit-task-header">
                 <input type="text" id="edit-task-title-input" class="task-title-input" placeholder="Task Title">
-                <button id="edit-btn" class="edit-btn"></button>
+                <button type="button" id="edit-btn" class="edit-btn">EDIT</button>
             </div>
             <div class="edit-task-div">
                 <textarea id="edit-task-desc-input" class="edit-task-description-input" placeholder="Task Description"></textarea>
