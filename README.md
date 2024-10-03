@@ -5,7 +5,7 @@ JSL11 Project: Agile Board - Kanban Task Management App
 
 ```
 
-# SDF Presentation 
+# JSL Presentation video & slides
 
 Loom Link: [] 
 Presentation Slides: []
