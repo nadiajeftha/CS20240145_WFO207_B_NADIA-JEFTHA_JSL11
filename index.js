@@ -21,8 +21,18 @@ function initializeData() {
 }
 
 // TASK: Get elements from the DOM
-const elements = 
-document.querySelectorAll('*')
+const elements = {
+  headerBoardName : document.getElementById('header-board-name'),
+  columnDivs : document.getElementById('column-div'),
+  editTaskModal : document.getElementById('edit-task-modal-window'),
+  modalWindow :document.getElementById('new-task-modal-window'),
+  filterDiv : document.getElementById('filter-div'),
+  hideSideBarBtn : document.getElementById('hide-side-bar-btn'),
+  showSideBarBtn :document.getElementById('show-side-bar-btn'),
+  themeSwitch :document.getElementById('switch'),
+  createNewTaskBtn : document.getElementById('add-new-task-btn'),
+}
+
 
 
 let activeBoard = ""
