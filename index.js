@@ -130,7 +130,7 @@ function styleActiveBoard(boardName) {
 
 
 function addTaskToUI(task) {
-  const column = document.querySelector('.column-div[data-status="${task.status}"]'); 
+  const column = document.querySelector(`.column-div[data-status="${task.status}"]`); 
   if (!column) {
     console.error(`Column not found for status: ${task.status}`);
     return;
@@ -234,9 +234,25 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
-  const sideBar = document.getElementById('side-bar-div')
-  sideBar.style.display = show ? 'block' : 'none'
-  localStorage.setItem('showSideBar' , show)
+//   const sideBar = document.getElementById('side-bar-div')
+//   sideBar.style.display = show ? 'block' : 'none'
+//   localStorage.setItem('showSideBar' , show)
+// }
+const sidebar = document.getElementById('side-bar-div')
+const showBtn = document.getElementById('show-side-bar-btn')
+const hideBtn = document.getElementById('hide-side-bar-btn')
+if (show) {
+  sidebar.classList.add('show-sidebar')
+  showBtn.style.display = 'none'
+  hideBtn.style.display = 'block'
+  localStorage.setItem('showSideBar' , 'true')
+}
+else {
+  sidebar.classList.remove('show-sidebar')
+  showBtn.style.display = 'block'
+  hideBtn.display = 'none'
+  localStorage.setItem('showSideBar' , 'false')
+  }
 }
 
 function toggleTheme() {
@@ -248,16 +264,24 @@ function toggleTheme() {
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
-  
+  document.getElementById('edit-task-title-input').value = task.title
+  document.getElementById('edit-task-desc-input').value = task.decription
+  document.getElementById('edit-select-status').value = task.status
 
   // Get button elements from the task modal
-
+const editBtn = document.getElementById('task-modal-btn')
 
   // Call saveTaskChanges upon click of Save Changes button
- 
+ const saveBtn = document.getElementById('save-task-changes-btn')
+ saveBtn.onclick = () => saveTaskChanges(task.id)
 
   // Delete task using a helper function and close the task modal
-
+const deleteBtn = document.getElementById('delete-task-btn')
+deleteBtn.onclick = () => {
+  deleteTask(task.id)
+  toggleModal(false, elements.editTaskModal)
+  refreshTasksUI
+}
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
