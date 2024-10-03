@@ -1,5 +1,5 @@
 // TASK: import helper functions from utils
-import { getTasks,saveTasks ,createNewTask, patchTask, putTask, deleteTask } from 'utils\taskFunctions.js'
+import { getTasks ,createNewTask, patchTask, putTask, deleteTask } from './utils/taskFunctions.js'
 // TASK: import initialData
 import { initialData } from 'initialData.js';
 
@@ -11,10 +11,11 @@ import { initialData } from 'initialData.js';
  * **********************************************************************************************************************************************/
 
 // Function checks if local storage already has data, if not it loads initialData to localStorage
-function initializeData() {
+function initializeData () {
   if (!localStorage.getItem('tasks')) {
     localStorage.setItem('tasks', JSON.stringify(initialData)); 
     localStorage.setItem('showSideBar', 'true')
+    console.log('Initial data loaded into localStorage')
   } else {
     console.log('Data already exists in localStorage');
   }
@@ -26,7 +27,7 @@ const elements = {
   columnDivs : document.querySelectorAll('.column-div'),
   editTaskModal : document.querySelector('.edit-task-modal-window'),
   modalWindow :document.getElementById('new-task-modal-window'),
-  filterDiv : document.getElementById('filter-div'),
+  filterDiv : document.getElementById('filterDiv'),
   hideSideBarBtn : document.getElementById('hide-side-bar-btn'),
   showSideBarBtn :document.getElementById('show-side-bar-btn'),
   themeSwitch :document.getElementById('switch'),
@@ -91,7 +92,7 @@ function filterAndDisplayTasksByBoard(boardName) {
     const columnHead = column.querySelector('.column-head-div')
     const tasksContainer = column.querySelector('.tasks-container')
     tasksContainer.innerHTML = '' //clear tasks
-    column.appendChild(tasksContainer);
+    
 
     filteredTasks.filter(task => task.status === status).forEach(task => { 
       const taskElement = document.createElement("div");
@@ -149,7 +150,11 @@ function addTaskToUI(task) {
   taskElement.textContent = task.title; // Modify as needed
   taskElement.setAttribute('data-task-id', task.id);
   
-  tasksContainer.appendChild(taskElement); 
+  taskElement.addEventListener("click", () => {
+    openEditTaskModal(task)
+  })
+
+  tasksContainer.appendChild(taskElement)
 }
 
 
@@ -207,7 +212,7 @@ function addTask(event) {
 
   //Assign user input to the task object
   const title =document.getElementById('title-input').value.trim()
-  const description =document.getElementById('description-input').value.trim()
+  const description =document.getElementById('desc-input').value.trim()
   const status =document.getElementById('select-status').value
 
   if (!title) {
@@ -250,7 +255,7 @@ if (show) {
 else {
   sidebar.classList.remove('show-sidebar')
   showBtn.style.display = 'block'
-  hideBtn.display = 'none'
+  hideBtn.style.display = 'none'
   localStorage.setItem('showSideBar' , 'false')
   }
 }
@@ -265,11 +270,10 @@ function toggleTheme() {
 function openEditTaskModal(task) {
   // Set task details in modal inputs
   document.getElementById('edit-task-title-input').value = task.title
-  document.getElementById('edit-task-desc-input').value = task.decription
+  document.getElementById('edit-task-desc-input').value = task.description
   document.getElementById('edit-select-status').value = task.status
 
   // Get button elements from the task modal
-const editBtn = document.getElementById('task-modal-btn')
 
   // Call saveTaskChanges upon click of Save Changes button
  const saveBtn = document.getElementById('save-task-changes-btn')
@@ -280,7 +284,7 @@ const deleteBtn = document.getElementById('delete-task-btn')
 deleteBtn.onclick = () => {
   deleteTask(task.id)
   toggleModal(false, elements.editTaskModal)
-  refreshTasksUI
+  refreshTasksUI()
 }
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
@@ -297,7 +301,7 @@ function saveTaskChanges(taskId) {
     return
   }
   // Create an object with the updated task details
-const updtaes = {
+const updates= {
   title : updatedTitle,
   decription : updatedDescription,
   status : updatedStatus
@@ -319,6 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function init() {
+  initializeData()
   setupEventListeners();
   const showSidebar = localStorage.getItem('showSideBar') === 'true';
   toggleSidebar(showSidebar);
