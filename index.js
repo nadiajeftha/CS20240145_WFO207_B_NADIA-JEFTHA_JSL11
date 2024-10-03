@@ -198,9 +198,17 @@ function addTask(event) {
   event.preventDefault(); 
 
   //Assign user input to the task object
+  const title =document.getElementById('title-input').value.trim
+  const description =document.getElementById('description-input').value.trim
+  const status =document.getElementById('select-status').value
+
     const task = {
-      
+     title,
+     description,
+     status,
+
     };
+    
     const newTask = createNewTask(task);
     if (newTask) {
       addTaskToUI(newTask);
