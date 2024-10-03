@@ -235,6 +235,7 @@ function addTask(event) {
 function toggleSidebar(show) {
   const sideBar = document.getElementById('side-bar-div')
   sideBar.style.display = show ? 'block' : 'none'
+  localStorage.setItem('showSideBar' , show)
 }
 
 function toggleTheme() {
