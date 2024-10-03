@@ -1,7 +1,7 @@
 // TASK: import helper functions from utils
 import { getTasks ,createNewTask, patchTask, putTask, deleteTask } from './utils/taskFunctions.js'
 // TASK: import initialData
-import { initialData } from 'initialData.js';
+import { initialData } from './initialData.js';
 
 
 
@@ -303,7 +303,7 @@ function saveTaskChanges(taskId) {
   // Create an object with the updated task details
 const updates= {
   title : updatedTitle,
-  decription : updatedDescription,
+  description : updatedDescription,
   status : updatedStatus
 }
 
