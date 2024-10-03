@@ -116,7 +116,7 @@ function refreshTasksUI() {
 // Styles the active board by adding an active class
 // TASK: Fix Bugs
 function styleActiveBoard(boardName) {
-  document.querySelectorAll('.board-btn').foreach(btn => { 
+  document.querySelectorAll('.board-btn').forEach(btn => { 
     
     if(btn.textContent === boardName) {
       btn.classList.add('active') 
@@ -148,7 +148,7 @@ function addTaskToUI(task) {
   taskElement.textContent = task.title; // Modify as needed
   taskElement.setAttribute('data-task-id', task.id);
   
-  tasksContainer.appendChild(); 
+  tasksContainer.appendChild(taskElement); 
 }
 
 
@@ -233,7 +233,8 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
- 
+  const sideBar = document.getElementById('side-bar-div')
+  sideBar.style.display = show ? 'block' : 'none'
 }
 
 function toggleTheme() {
