@@ -288,17 +288,28 @@ deleteBtn.onclick = () => {
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
+  const updatedTitle = document.getElementById('edit-task-title-input').value.trim()
+  const updatedDescription = document.getElementById('edit-task-desc-input').value.trim()
+  const updatedStatus = document.getElementById('edit-select-status').value
   
-
+  if (!updatedTitle) { //to validate inputs
+    alert ('ENTER TASK!')
+    return
+  }
   // Create an object with the updated task details
-
+const updtaes = {
+  title : updatedTitle,
+  decription : updatedDescription,
+  status : updatedStatus
+}
 
   // Update task using a hlper functoin
- 
+ patchTask(taskId, updates)
 
   // Close the modal and refresh the UI to reflect the changes
 
   refreshTasksUI();
+  toggleModal(false, elements.editTaskModal)
 }
 
 /*************************************************************************************************************************************************/
