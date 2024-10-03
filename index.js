@@ -84,11 +84,11 @@ function filterAndDisplayTasksByBoard(boardName) {
   elements.columnDivs.forEach(column => {
     const status = column.getAttribute("data-status");
     // Reset column content while preserving the column title
-    column.innerHTML = `<div class="column-head-div">
-                          <span class="dot" id="${status}-dot"></span>
-                          <h4 class="columnHeader">${status.toUpperCase()}</h4>
-                        </div>`;
-
+    //column.innerHTML = `<div class="column-head-div">
+                         // <span class="dot" id="${status}-dot"></span>
+                         // <h4 class="columnHeader">${status.toUpperCase()}</h4>
+                        //</div>`;
+    const columnHead = column.querySelector('.column-head-div')
     const tasksContainer = document.createElement("div");
     column.appendChild(tasksContainer);
 
@@ -239,7 +239,8 @@ function toggleSidebar(show) {
 }
 
 function toggleTheme() {
- 
+  const isLightTheme = document.body.classList.toggle('light-theme')
+  localStorage.setItem('light-theme' , isLightTheme ? 'enabled' : 'disabled')
 }
 
 
