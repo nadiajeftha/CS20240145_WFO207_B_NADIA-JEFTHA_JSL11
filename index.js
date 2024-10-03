@@ -89,10 +89,11 @@ function filterAndDisplayTasksByBoard(boardName) {
                          // <h4 class="columnHeader">${status.toUpperCase()}</h4>
                         //</div>`;
     const columnHead = column.querySelector('.column-head-div')
-    const tasksContainer = document.createElement("div");
+    const tasksContainer = column.querySelector('.tasks-container')
+    tasksContainer.innerHTML = '' //clear tasks
     column.appendChild(tasksContainer);
 
-    filteredTasks.filter(task => task.status = status).forEach(task => { 
+    filteredTasks.filter(task => task.status === status).forEach(task => { 
       const taskElement = document.createElement("div");
       taskElement.classList.add("task-div");
       taskElement.textContent = task.title;
