@@ -23,8 +23,8 @@ function initializeData() {
 // TASK: Get elements from the DOM
 const elements = {
   headerBoardName : document.getElementById('header-board-name'),
-  columnDivs : document.getElementById('column-div'),
-  editTaskModal : document.getElementById('edit-task-modal-window'),
+  columnDivs : document.querySelectorAll('.column-div'),
+  editTaskModal : document.querySelector('.edit-task-modal-window'),
   modalWindow :document.getElementById('new-task-modal-window'),
   filterDiv : document.getElementById('filter-div'),
   hideSideBarBtn : document.getElementById('hide-side-bar-btn'),
